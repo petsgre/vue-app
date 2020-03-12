@@ -14,7 +14,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{vue,js}": "npm run test"
+    "src/**/*.{vue,js}": [
+      "eslint --fix"
+    ]
   },
   "dependencies": {
     "core-js": "^3.6.4",

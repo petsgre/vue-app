@@ -30,7 +30,7 @@ export default {
     event: "change"
   },
   created() {
-    this.$emit("change",'666');
+      this.$emit("change", "666");
     this.$EventBus.$emit("xxx", "params");
   },
   mounted() {
@@ -38,7 +38,6 @@ export default {
     console.log(this.xxx);
     setTimeout(() => {
       console.log(this.xxx);
-      
     }, 2000);
     // const ul = document.getElementById("xxx");
     // console.log(ul);
