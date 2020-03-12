@@ -34,7 +34,7 @@ export default {
     this.$EventBus.$emit("xxx", "params");
   },
   mounted() {
-    console.log(this);
+    // console.log(this);
     console.log(this.xxx);
     setTimeout(() => {
       console.log(this.xxx);
