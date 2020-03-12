@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "echo \"okok\" && exit 0"
+    "test": "node xxx.js"
   },
   "husky": {
     "hooks": {
