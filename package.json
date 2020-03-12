@@ -9,7 +9,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "echo \"ok\" && exit 0"
+      "pre-commit": "node xxx.js"
     }
   },
   "dependencies": {
