@@ -7,6 +7,11 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo \"ok\" && exit 0"
+    }
+  },
   "dependencies": {
     "core-js": "^3.6.4",
     "vue": "^2.6.11"
@@ -18,6 +23,7 @@
     "babel-eslint": "^10.0.3",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.1.2",
+    "husky": "^4.2.3",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
