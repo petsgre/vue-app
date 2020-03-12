@@ -31,7 +31,7 @@ export default {
   },
   created() {
     this.$emit("change",'666');
-    // this.$EventBus.$emit("xxx", "params");
+    this.$EventBus.$emit("xxx", "params");
   },
   mounted() {
     // console.log(this);

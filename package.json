@@ -15,7 +15,7 @@
   },
   "lint-staged": {
     "src/**/*.{vue,js}": [
-      "git add"
+      "echo \"vue and js file lint finished!\""
     ]
   },
   "dependencies": {
