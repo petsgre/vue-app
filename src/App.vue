@@ -20,7 +20,7 @@ export default {
   methods: {},
   created() {
     // console.log(this);
-    // console.log(this.$EventBus);
+    console.log(this.$EventBus);
     this.$EventBus.$on("xxx", params => {
       console.log(params);
     });
