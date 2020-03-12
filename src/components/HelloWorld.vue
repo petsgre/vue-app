@@ -30,7 +30,7 @@ export default {
     event: "change"
   },
   created() {
-      this.$emit("change", "666");
+    this.$emit("change", "666");
     this.$EventBus.$emit("xxx", "params");
   },
   mounted() {
