@@ -13,6 +13,10 @@
       >.
     </p>
     <h3>Installed CLI Plugins</h3>
+    <el-button @click="dia = true">显示dia 按钮</el-button>
+    <div v-if="dia">
+      <Sub :value.sync="show"></Sub>
+    </div>
   </div>
 </template>
 
@@ -28,6 +32,12 @@ export default {
   model: {
     prop: "xxx",
     event: "change"
+  },
+  data: () => {
+    return {
+      show: false,
+      dia: false
+    };
   },
   created() {
     this.$emit("change", "666");
@@ -46,6 +56,9 @@ export default {
     invoke() {
       this.$EventBus.$emit("xxx", "params");
     }
+  },
+  components: {
+    Sub: () => import("./Sub")
   }
 };
 </script>
