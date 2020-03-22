@@ -14,6 +14,7 @@
     </p>
     <h3>Installed CLI Plugins</h3>
     <el-button @click="dia = true">显示dia 按钮</el-button>
+    {{ name }}
     <div v-if="dia">
       <Sub :value.sync="show"></Sub>
     </div>
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import { mapState, mapGetters, mapActions } from "vuex";
 export default {
   name: "HelloWorld",
   props: {
@@ -33,6 +35,16 @@ export default {
     prop: "xxx",
     event: "change"
   },
+  computed: {
+    // 使用$store 获取实例上挂载的vuex
+    name() {
+      return this.$store.state.name;
+    },
+    // 使用mapState api获取对应的映射
+    ...mapState({ name: "name", lll: state => state.count }),
+    // getter 就是state的 计算属性
+    ...mapGetters({ computedName: "getName" })
+  },
   data: () => {
     return {
       show: false,
@@ -42,6 +54,9 @@ export default {
   created() {
     this.$emit("change", "666");
     this.$EventBus.$emit("xxx", "params");
+    setTimeout(() => {
+      this.hookBefore("nnn");
+    }, 2000);
   },
   mounted() {
     // console.log(this);
@@ -55,7 +70,8 @@ export default {
   methods: {
     invoke() {
       this.$EventBus.$emit("xxx", "params");
-    }
+    },
+    ...mapActions({ changeName: "updateName", hookBefore: "hookBefore" })
   },
   components: {
     Sub: () => import("./Sub")
