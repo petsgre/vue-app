@@ -1,31 +1,34 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App" v-model="xxx" />
+    <!-- <HelloWorld msg="Welcome to Your Vue.js App" v-model="xxx" /> -->
+    <Main />
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue"
+import Main from "./components/Main.vue"
 
 export default {
   name: "App",
   components: {
-    HelloWorld
+    // HelloWorld,
+    Main,
   },
   data() {
     return {
-      xxx: "xxx"
-    };
+      xxx: "xxx",
+    }
   },
   methods: {},
   created() {
     // console.log(this);
-    console.log(this.$EventBus);
-    this.$EventBus.$on("xxx", params => {
-      console.log(params);
-    });
-  }
-};
+    console.log(this.$EventBus)
+    this.$EventBus.$on("xxx", (params) => {
+      console.log(params)
+    })
+  },
+}
 </script>
 
 <style>

@@ -18,7 +18,6 @@ export default {
   },
   methods: {
     close() {
-      console.log(123);
       this.show = false;
       this.$emit("update:value", false);
     }
