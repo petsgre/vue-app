@@ -16,7 +16,10 @@ export default {
           on: {
             update: function(value) {
               console.log(this, value)
-              this.filterData.name = value
+              this.$emit("update:filterData", {
+                ...this.filterData,
+                name: value,
+              })
             },
           },
         },
@@ -34,7 +37,10 @@ export default {
           on: {
             update: function(value) {
               console.log(this, value)
-              this.filterData.gender = value
+              this.$emit("update:filterData", {
+                ...this.filterData,
+                gender: value,
+              })
             },
           },
         },

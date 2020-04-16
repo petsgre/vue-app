@@ -1,5 +1,5 @@
 <template>
-  <el-dialog center title="选择课程" :visible.sync="visible" width="80%">
+  <el-dialog center :title="title" :visible.sync="visible" width="80%">
     <div class="search-filter">
       <div
         class="filter-item"
@@ -55,14 +55,17 @@
 
 import XiaoInput from "./widgets/XiaoInput"
 import XiaoSelect from "./widgets/XiaoSelect"
-import filterOptions from "./options/filterOptions"
-import tableOptions from "./options/tableOptions"
 import CustomView from "./widgets/CustomView"
 // import { bindInstance } from "./util"
 
 export default {
   props: {
     tableDialogVisible: Boolean,
+    title: String,
+    filterOptions: Object,
+    tableOptions: Object,
+    filterData: Object,
+    tableData: Array,
   },
   computed: {
     visible: {
@@ -75,37 +78,7 @@ export default {
     },
   },
   data() {
-    return {
-      filterOptions: filterOptions,
-      tableOptions: tableOptions,
-      filterData: {
-        name: "",
-        gender: "",
-        address: "",
-      },
-      tableData: [
-        {
-          gender: 1,
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          gender: 0,
-          name: "王1虎",
-          address: "上海市普陀区金沙江路 1517 弄",
-        },
-        {
-          gender: 1,
-          name: "王2虎",
-          address: "上海市普陀区金沙江路 1519 弄",
-        },
-        {
-          gender: 0,
-          name: "王3虎",
-          address: "上海市普陀区金沙江路 1516 弄",
-        },
-      ],
-    }
+    return {}
   },
   methods: {
     /**
@@ -116,10 +89,6 @@ export default {
      */
     call(value, func) {
       func.call(this, value)
-      this.fetchData()
-    },
-    updateFilter(value, func) {
-      func(value)
       this.fetchData()
     },
     fetchData() {

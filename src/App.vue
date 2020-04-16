@@ -17,7 +17,7 @@ export default {
   },
   data() {
     return {
-      xxx: "xxx",
+      app: "app",
     }
   },
   methods: {},
