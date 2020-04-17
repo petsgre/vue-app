@@ -39,8 +39,8 @@
       </el-table-column>
     </el-table>
     <span slot="footer" class="dialog-footer">
-      <el-button @click="dialogVisible = false">取 消</el-button>
-      <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      <el-button @click="visible = false">取 消</el-button>
+      <el-button type="primary" @click="visible = false">确 定</el-button>
     </span>
   </el-dialog>
 </template>
@@ -65,7 +65,6 @@ export default {
     filterOptions: Object,
     tableOptions: Object,
     filterData: Object,
-    tableData: Array,
   },
   computed: {
     visible: {
@@ -78,7 +77,30 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      tableData: [
+        {
+          gender: 1,
+          name: "王小虎",
+          address: "上海市普陀区金沙江路 1518 弄",
+        },
+        {
+          gender: 0,
+          name: "王1虎",
+          address: "上海市普陀区金沙江路 1517 弄",
+        },
+        {
+          gender: 1,
+          name: "王2虎",
+          address: "上海市普陀区金沙江路 1519 弄",
+        },
+        {
+          gender: 0,
+          name: "王3虎",
+          address: "上海市普陀区金沙江路 1516 弄",
+        },
+      ],
+    }
   },
   methods: {
     /**
@@ -93,6 +115,17 @@ export default {
     },
     fetchData() {
       console.log("fetched")
+      const data = []
+      for (let i = 0; i < 10; i++) {
+        data[i] = {
+          gender: Math.random() > 0.5 ? 1 : 0,
+          name: `王${Math.floor(Math.random() * 10)}虎`,
+          address: `上海市普陀区金沙江路 ${Math.floor(
+            Math.random() * (200 - 100) + 100
+          )} 弄`,
+        }
+      }
+      this.tableData = data
     },
   },
   created() {},

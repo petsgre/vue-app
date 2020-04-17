@@ -6,7 +6,6 @@
       :filterOptions="filterOptions"
       :tableOptions="tableOptions"
       :filterData.sync="filterData"
-      :tableData.sync="tableData"
     />
     <el-button @click="tableDialogVisible = true">打开Dialog</el-button>
   </div>
@@ -29,28 +28,6 @@ export default {
         gender: "",
         address: "",
       },
-      tableData: [
-        {
-          gender: 1,
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          gender: 0,
-          name: "王1虎",
-          address: "上海市普陀区金沙江路 1517 弄",
-        },
-        {
-          gender: 1,
-          name: "王2虎",
-          address: "上海市普陀区金沙江路 1519 弄",
-        },
-        {
-          gender: 0,
-          name: "王3虎",
-          address: "上海市普陀区金沙江路 1516 弄",
-        },
-      ],
     }
   },
   methods: {},
