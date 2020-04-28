@@ -1,5 +1,5 @@
 <template>
-  <el-input :placeholder="placeholder" @input="updateValue" :value="value" />
+  <el-input v-bind="$attrs" @input="updateValue" :value="value" />
 </template>
 
 <script>

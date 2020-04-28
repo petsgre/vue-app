@@ -1,30 +1,39 @@
 <template>
-  <el-select :value="value" :placeholder="placeholder" @change="updateValue">
+  <el-select :value="value" v-bind="$attrs" v-on="$listeners">
     <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
+      v-for="(item, key) in options"
+      :key="item[optionProps.valueKey] || key"
+      :label="item[optionProps.labelKey] || item"
+      :value="item[optionProps.valueKey] || key"
+      v-on="optionListeners"
     >
     </el-option>
   </el-select>
 </template>
 
 <script>
+import _ from "lodash"
+
 export default {
-  props: ["value", "options"],
-  computed: {
-    placeholder() {
-      return this.$attrs.placeholder
+  props: {
+    value: {
+      type: [Array, String, Number],
     },
   },
-  methods: {
-    updateValue(value) {
-      console.log(value)
-      this.$emit("update", value)
+  computed: {
+    options() {
+      return _.get(this.$attrs, "options.options", {})
     },
+    optionProps() {
+      return _.get(this.$attrs, "options.props", {})
+    },
+    optionListeners() {
+      return _.get(this.$attrs, "options.on", {})
+    },
+  },
+  methods: {},
+  created() {
+    console.log(this)
   },
 }
 </script>
-
-<style></style>

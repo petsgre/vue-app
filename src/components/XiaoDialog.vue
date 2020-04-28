@@ -1,8 +1,8 @@
 <template>
   <el-dialog center :title="title" :visible.sync="visible" width="80%">
-    <div class="search-filter">
+    <div class="xiao-search-filter">
       <div
-        class="filter-item"
+        class="xiao-filter-item"
         v-for="(widget, index) in filterOptions.widgets"
         :key="index"
       >
@@ -10,11 +10,9 @@
         <!-- 对应的path去获取这个值 -->
         <component
           :is="widget.control.name"
-          v-bind="{
-            ...widget.control.options.props,
-          }"
+          v-bind="widget.control.props"
           :value="filterData[widget.valuePath]"
-          @update="call($event, widget.control.options.on.update)"
+          v-on="listenerProcessor(widget.control.on)"
         />
       </div>
     </div>
@@ -65,6 +63,7 @@ export default {
     filterOptions: Object,
     tableOptions: Object,
     filterData: Object,
+    tableData: Array,
   },
   computed: {
     visible: {
@@ -77,30 +76,7 @@ export default {
     },
   },
   data() {
-    return {
-      tableData: [
-        {
-          gender: 1,
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄",
-        },
-        {
-          gender: 0,
-          name: "王1虎",
-          address: "上海市普陀区金沙江路 1517 弄",
-        },
-        {
-          gender: 1,
-          name: "王2虎",
-          address: "上海市普陀区金沙江路 1519 弄",
-        },
-        {
-          gender: 0,
-          name: "王3虎",
-          address: "上海市普陀区金沙江路 1516 弄",
-        },
-      ],
-    }
+    return {}
   },
   methods: {
     /**
@@ -111,24 +87,18 @@ export default {
      */
     call(value, func) {
       func.call(this, value)
-      this.fetchData()
+      this.$emit("fetchData")
     },
-    fetchData() {
-      console.log("fetched")
-      const data = []
-      for (let i = 0; i < 10; i++) {
-        data[i] = {
-          gender: Math.random() > 0.5 ? 1 : 0,
-          name: `王${Math.floor(Math.random() * 10)}虎`,
-          address: `上海市普陀区金沙江路 ${Math.floor(
-            Math.random() * (200 - 100) + 100
-          )} 弄`,
-        }
-      }
-      this.tableData = data
+    listenerProcessor(listeners = {}) {
+      Object.keys(listeners).forEach((key) => {
+        listeners[key] = listeners[key].bind(this)
+      })
+      return listeners
     },
   },
-  created() {},
+  created() {
+    this.$emit("fetchData")
+  },
   components: {
     XiaoInput,
     XiaoSelect,
@@ -136,11 +106,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.search-filter {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 200px);
-  grid-gap: 10px;
-}
-</style>
