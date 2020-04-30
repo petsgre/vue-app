@@ -37,14 +37,16 @@
       </el-table-column>
     </el-table>
     <div class="pagination">
-      <el-pagination background
+      <el-pagination
+        background
         @current-change="handleCurrentChange"
         @size-change="handleSizeChange"
         :current-page="currentPage"
         :page-sizes="PAGE_SIZE_LIST"
         :page-size="pageSize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="pagination.total">
+        :total="pagination.total"
+      >
       </el-pagination>
     </div>
   </el-dialog>
@@ -84,18 +86,18 @@ export default {
       },
     },
   },
-  watch:{
-    filterData:{
-      handler(){
-        this.$emit('fetchData')
-      }
-    }
+  watch: {
+    filterData: {
+      handler() {
+        this.$emit("fetchData")
+      },
+    },
   },
   data() {
     return {
-      currentPage:1,
+      currentPage: 1,
       PAGE_SIZE_LIST,
-      pageSize:20
+      pageSize: 20,
     }
   },
   methods: {
@@ -115,12 +117,8 @@ export default {
       })
       return listeners
     },
-    handleCurrentChange(){
-      
-    },
-    handleSizeChange(){
-      
-    }
+    handleCurrentChange() {},
+    handleSizeChange() {},
   },
   created() {
     this.$emit("fetchData")

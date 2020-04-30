@@ -1,20 +1,9 @@
 <script>
 export default {
-  props: [
-    "data",
-    "renderFunc",
-    "options",
-    "index",
-    "tableData",
-    "customize",
-  ],
+  props: ["data", "renderFunc", "options", "index", "tableData", "customize"],
   render: function(h) {
-    // console.log(this);
-    if (!this.renderFunc && !this.options) {
-      return <div>xxx</div>
-    }
     if (!this.renderFunc) {
-      return <div>{this.data}</div>
+      return <span>{this.data}</span>
     }
     const jsx = this.renderFunc(h, this)
 

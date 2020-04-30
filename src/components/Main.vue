@@ -39,7 +39,7 @@ export default {
       },
       tableData: [],
       pagination: {
-        total:100
+        total: 100,
       },
       title: "选择课程",
       gradesOption: [
