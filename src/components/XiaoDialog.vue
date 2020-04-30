@@ -24,22 +24,29 @@
         width="180"
       >
         <template slot-scope="scope">
-          <div v-if="tr.options">
-            {{ tr.render(scope.row[tr.key], tr.options).label }}
-          </div>
-          <div v-else-if="!tr.render">{{ scope.row[tr.key] }}</div>
           <CustomView
-            v-else
-            :data="scope.row[tr.key]"
+            :index="scope.$index + 1"
+            :options="tr.options"
+            :data="scope.row"
+            :tableData="tableData"
             :renderFunc="tr.render"
+            :fun="tr.fun"
+            :customize="$attrs.customize"
           />
         </template>
       </el-table-column>
     </el-table>
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="visible = false">取 消</el-button>
-      <el-button type="primary" @click="visible = false">确 定</el-button>
-    </span>
+    <div class="pagination">
+      <el-pagination background
+        @current-change="handleCurrentChange"
+        @size-change="handleSizeChange"
+        :current-page="currentPage"
+        :page-sizes="PAGE_SIZE_LIST"
+        :page-size="pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="pagination.total">
+      </el-pagination>
+    </div>
   </el-dialog>
 </template>
 
@@ -55,12 +62,14 @@ import XiaoInput from "./widgets/XiaoInput"
 import XiaoSelect from "./widgets/XiaoSelect"
 import CustomView from "./widgets/CustomView"
 // import { bindInstance } from "./util"
+const PAGE_SIZE_LIST = [10, 20, 50, 100, 200]
 
 export default {
   props: {
     tableDialogVisible: Boolean,
     title: String,
     filterOptions: Object,
+    pagination: Object,
     tableOptions: Object,
     filterData: Object,
     tableData: Array,
@@ -75,8 +84,19 @@ export default {
       },
     },
   },
+  watch:{
+    filterData:{
+      handler(){
+        this.$emit('fetchData')
+      }
+    }
+  },
   data() {
-    return {}
+    return {
+      currentPage:1,
+      PAGE_SIZE_LIST,
+      pageSize:20
+    }
   },
   methods: {
     /**
@@ -95,6 +115,12 @@ export default {
       })
       return listeners
     },
+    handleCurrentChange(){
+      
+    },
+    handleSizeChange(){
+      
+    }
   },
   created() {
     this.$emit("fetchData")

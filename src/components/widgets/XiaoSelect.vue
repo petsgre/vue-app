@@ -32,8 +32,6 @@ export default {
     },
   },
   methods: {},
-  created() {
-    console.log(this)
-  },
+  created() {},
 }
 </script>

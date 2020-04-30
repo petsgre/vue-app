@@ -28,7 +28,7 @@ export default function({ gradesOption }) {
             update: function(value) {
               this.$emit("update:filterData", {
                 ...this.filterData,
-                name: value,
+                curriculum_title: value,
               })
             },
           },
