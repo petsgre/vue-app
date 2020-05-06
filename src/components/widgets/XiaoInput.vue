@@ -1,22 +1,11 @@
 <template>
-  <el-input v-bind="$attrs" @input="updateValue" :value="value" />
+  <el-input :value="value" v-bind="$attrs" v-on="$listeners" />
 </template>
 
 <script>
 export default {
   props: ["value"],
-  computed: {
-    placeholder() {
-      return this.$attrs.placeholder
-    },
-  },
-  methods: {
-    updateValue(value) {
-      this.$emit("update", value)
-    },
-  },
-  created() {},
+  methods: {},
+  created() {}
 }
 </script>
-
-<style></style>

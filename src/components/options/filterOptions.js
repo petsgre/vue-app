@@ -22,10 +22,9 @@ export default function({ gradesOption }) {
           name: "XiaoInput",
           props: {
             placeholder: "课程名称",
-            disabled: true,
           },
           on: {
-            update: function(value) {
+            input: function(value) {
               this.$emit("update:filterData", {
                 ...this.filterData,
                 curriculum_title: value,
@@ -42,7 +41,7 @@ export default function({ gradesOption }) {
             placeholder: "老师姓名",
           },
           on: {
-            update: function(value) {
+            input: function(value) {
               this.$emit("update:filterData", {
                 ...this.filterData,
                 lecturer_name: value,
